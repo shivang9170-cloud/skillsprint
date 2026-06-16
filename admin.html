@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> 🚀 SkillSprint.in</title>
+
+    <link rel="stylesheet" href="admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+</head>
+
+<body>
+
+    <div class="admin-container">
+
+        <!-- SIDEBAR -->
+        <div class="sidebar">
+            <h2 class="logo">🚀 SkillSprint </h2>
+
+            <a onclick="showTab('dashboard')" class="nav active">Dashboard</a>
+            <a onclick="showTab('courses')" class="nav">Courses</a>
+            <a onclick="showTab('modules')" class="nav">Modules</a>
+            <a onclick="showTab('lessons')" class="nav">Lessons</a>
+            <a onclick="showTab('students')" class="nav">Students</a>
+            <a onclick="showTab('teachers')" class="nav">Teachers</a>
+            <a onclick="showTab('notices')" class="nav">Notices</a>
+
+        </div>
+
+        <!-- MAIN -->
+        <div class="main">
+
+            <div class="topbar">
+                <h1 id="pageTitle">Dashboard</h1>
+
+                <div class="actions">
+                    <button onclick="refreshPage()">🔄</button>
+                    <button onclick="logout()">🚪</button>
+                </div>
+            </div>
+
+            <div id="contentArea"></div>
+
+        </div>
+
+    </div>
+
+    <script src="admin.js"></script>
+
+</body>
+
+</html>

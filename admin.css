@@ -1,0 +1,143 @@
+body {
+    margin: 0;
+    font-family: 'Segoe UI';
+    background: #0f172a;
+    color: white;
+}
+
+/* LAYOUT */
+.admin-container {
+    display: flex;
+    height: 100vh;
+}
+
+/* SIDEBAR */
+.sidebar {
+    width: 240px;
+    background: #020617;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    border-right: 1px solid #1e293b;
+}
+
+.logo {
+    text-align: center;
+    color: #38bdf8;
+}
+
+.nav {
+    padding: 12px;
+    cursor: pointer;
+    border-radius: 10px;
+    transition: 0.3s;
+}
+
+.nav:hover {
+    background: #1e293b;
+    transform: translateX(5px);
+}
+
+.nav.active {
+    background: linear-gradient(90deg, #3b82f6, #06b6d4);
+}
+
+/* MAIN */
+.main {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+/* TOPBAR */
+.topbar {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.actions button {
+    background: #1e293b;
+    border: none;
+    padding: 10px;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.actions button:hover {
+    background: #3b82f6;
+    transform: scale(1.1);
+}
+
+/* CARDS */
+.card {
+    background: #1e293b;
+    padding: 20px;
+    border-radius: 15px;
+    margin-bottom: 20px;
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 20px #3b82f6;
+}
+
+/* BUTTON */
+.btn {
+    padding: 10px 15px;
+    background: linear-gradient(90deg, #3b82f6, #06b6d4);
+    border: none;
+    border-radius: 10px;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 10px #38bdf8;
+}
+
+/* TABLE */
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+td,
+th {
+    padding: 10px;
+    border-bottom: 1px solid #334155;
+}
+
+tr:hover {
+    background: #334155;
+}
+
+/* INPUT */
+input {
+    padding: 10px;
+    width: 100%;
+    margin-bottom: 10px;
+    background: #020617;
+    border: 1px solid #334155;
+    color: white;
+    border-radius: 8px;
+}
+
+/* MOBILE */
+@media(max-width:768px) {
+    .admin-container {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        flex-direction: row;
+        overflow-x: auto;
+    }
+}

@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Contact Us - SkillSprint</title>
+
+    <style>
+        /* RESET */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        /* 🌌 BACKGROUND */
+        body {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #020617;
+            overflow: hidden;
+            color: white;
+        }
+
+        /* Animated Gradient */
+        body::before {
+            content: "";
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, #06b6d4, #9333ea, #f97316, #06b6d4);
+            background-size: 400% 400%;
+            animation: moveBg 12s infinite;
+            opacity: 0.15;
+        }
+
+        @keyframes moveBg {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        /* FLOATING BLOBS */
+        .blob {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            filter: blur(100px);
+            opacity: 0.4;
+            animation: float 8s infinite ease-in-out;
+        }
+
+        .blob1 {
+            background: #06b6d4;
+            top: 10%;
+            left: 10%;
+        }
+
+        .blob2 {
+            background: #9333ea;
+            bottom: 10%;
+            right: 10%;
+            animation-delay: 2s;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-40px);
+            }
+        }
+
+        /* 💎 CARD */
+        .card {
+            position: relative;
+            z-index: 10;
+            width: 380px;
+            padding: 35px;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(15px);
+            text-align: center;
+            box-shadow: 0 0 40px rgba(0, 255, 255, 0.2);
+            animation: fadeIn 1s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .card h2 {
+            color: #06b6d4;
+            margin-bottom: 15px;
+        }
+
+        .card p {
+            font-size: 14px;
+            opacity: 0.7;
+            line-height: 1.6;
+        }
+
+        /* 🚀 BUTTONS */
+        .btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 18px;
+            padding: 14px;
+            border-radius: 30px;
+            text-decoration: none;
+            color: white;
+            font-weight: 500;
+            background: linear-gradient(45deg, #06b6d4, #9333ea);
+            transition: 0.4s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Glow effect */
+        .btn::before {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #06b6d4, #f97316);
+            opacity: 0;
+            transition: 0.4s;
+        }
+
+        .btn:hover::before {
+            opacity: 0.3;
+        }
+
+        .btn:hover {
+            transform: scale(1.08);
+            box-shadow: 0 0 25px #06b6d4;
+        }
+
+        /* ICON STYLE */
+        .icon {
+            font-size: 18px;
+        }
+
+        /* BACK BUTTON */
+        .back {
+            margin-top: 20px;
+            display: inline-block;
+            color: #aaa;
+            text-decoration: none;
+            font-size: 13px;
+        }
+
+        .back:hover {
+            color: #06b6d4;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- 🌌 BACKGROUND BLOBS -->
+    <div class="blob blob1"></div>
+    <div class="blob blob2"></div>
+
+    <!-- 💎 CARD -->
+    <div class="card">
+
+        <h2>Contact Us</h2>
+
+        <p>
+            At SkillSprint, your success is our priority. If you have any questions, need guidance,
+            or face any technical issues, feel free to contact us. Whether it's choosing the right
+            course, solving a problem, or improving your learning experience — we are always here
+            to help you grow and achieve your goals 🚀
+        </p>
+
+        <!-- BUTTONS -->
+        <a href="mailto:divyanshu1352@gmail.com" class="btn">
+            📧 Email Us
+        </a>
+
+        <a href="tel:8303215545" class="btn">
+            📞 Call Now
+        </a>
+
+        <a href="https://instagram.com/whynot.rajj_" target="_blank" class="btn">
+            📷 Instagram
+        </a>
+
+        <a href="index.html" class="back">← Back to Home</a>
+
+    </div>
+
+</body>
+
+</html>

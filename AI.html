@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> 🚀 SkillSprint AI.in</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="AI.css">
+</head>
+
+<body>
+
+    <div class="ruixen-container">
+        <div class="content-wrapper">
+            <!-- Header -->
+            <div class="header">
+                <div class="logo">
+                    <i class="fas fa-moon"></i>
+                    <span>SkillSprint AI</span>
+                </div>
+                <div class="header-actions">
+                    <button class="icon-btn" onclick="toggleChatHistory()">
+                        <i class="fas fa-history"></i>
+                    </button>
+                    <button class="icon-btn" onclick="clearChat()">
+                        <i class="fas fa-trash-alt"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Chat Messages Area -->
+            <div class="chat-area" id="chatMessages">
+                <div class="message ai-message">
+                    <div class="message-avatar">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <div class="message-bubble">
+                        Hello! I'm SKILL SPRINT AI. I can help you with:
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- File Upload Area -->
+            <div class="upload-area" id="uploadArea">
+                <input type="file" id="fileUpload" accept=".pdf,image/*" style="display:none">
+                <button class="upload-btn" onclick="document.getElementById('fileUpload').click()">
+                    <i class="fas fa-paperclip"></i> Attach PDF/Image
+                </button>
+                <span class="file-name" id="fileName"></span>
+            </div>
+
+            <!-- Input Area -->
+            <div class="input-area">
+                <textarea id="userInput" rows="1" placeholder="Ask me anything... or paste a YouTube link..."
+                    onkeypress="if(event.key==='Enter' && !event.shiftKey) { event.preventDefault(); sendMessage(); }"></textarea>
+                <button id="sendBtn" onclick="sendMessage()">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+
+
+
+        </div>
+    </div>
+    </div>
+
+    <!-- Chat History Modal -->
+    <div class="modal" id="historyModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-history"></i> Chat History</h3>
+                <button class="close-modal" onclick="closeHistoryModal()">&times;</button>
+            </div>
+            <div class="modal-body" id="historyList">
+                <p>No history yet. Start a conversation!</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="AI.js"></script>
+</body>
+
+</html>
