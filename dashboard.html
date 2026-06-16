@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <nav>
+        <h2>Dashboard</h2>
+        <button onclick="logout()">Logout</button>
+    </nav>
+    <div class="container">
+        <h2>Welcome <span id="user"></span> 👋</h2>
+        <p>Level: <span id="level">1</span></p>
+        <div class="progress">
+            <div id="bar"></div>
+        </div>
+        <button onclick="completeTask()">Complete Task</button>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>

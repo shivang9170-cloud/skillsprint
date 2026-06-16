@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Register | AI Project</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Poppins', system-ui, -apple-system, 'Inter', sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: #0b1120;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow-x: hidden;
+            padding: 1.5rem;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background-image:
+                linear-gradient(#06b6d4 1px, transparent 1px),
+                linear-gradient(90deg, #06b6d4 1px, transparent 1px);
+            background-size: 55px 55px;
+            opacity: 0.12;
+            pointer-events: none;
+            animation: driftGrid 24s linear infinite;
+            z-index: 0;
+        }
+
+        @keyframes driftGrid {
+            0% {
+                transform: translate(0, 0);
+            }
+
+            100% {
+                transform: translate(55px, 55px);
+            }
+        }
+
+        body::after {
+            content: "";
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 40%, rgba(6, 182, 212, 0.15) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .card {
+            position: relative;
+            width: 100%;
+            max-width: 420px;
+            padding: 2rem 1.8rem 2rem 1.8rem;
+            border-radius: 2.5rem;
+            background: rgba(15, 23, 42, 0.7);
+            backdrop-filter: blur(14px);
+            border: 1px solid rgba(6, 182, 212, 0.35);
+            box-shadow: 0 25px 45px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(6, 182, 212, 0.1) inset, 0 0 18px rgba(6, 182, 212, 0.3);
+            transition: all 0.25s ease;
+            z-index: 2;
+        }
+
+        .card:hover {
+            border-color: rgba(6, 182, 212, 0.7);
+            box-shadow: 0 30px 50px rgba(0, 0, 0, 0.5), 0 0 22px rgba(6, 182, 212, 0.4);
+        }
+
+        h2 {
+            text-align: center;
+            font-weight: 700;
+            font-size: 1.9rem;
+            letter-spacing: -0.3px;
+            background: linear-gradient(135deg, #ffffff 30%, #7dd3fc 80%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        h2 span {
+            font-size: 1.8rem;
+        }
+
+        .input-group {
+            margin-bottom: 1.2rem;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 12px 14px;
+            background: rgba(0, 0, 0, 0.45);
+            border: none;
+            border-bottom: 1.5px solid rgba(6, 182, 212, 0.5);
+            color: #f1f5f9;
+            font-size: 0.95rem;
+            transition: all 0.2s;
+            border-radius: 12px 12px 8px 8px;
+            outline: none;
+        }
+
+        select {
+            cursor: pointer;
+            appearance: none;
+            background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2306b6d4' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'></polyline></svg>");
+            background-repeat: no-repeat;
+            background-position: right 14px center;
+            background-size: 16px;
+        }
+
+        input:focus,
+        select:focus {
+            border-bottom-color: #06b6d4;
+            background: rgba(6, 182, 212, 0.12);
+            box-shadow: 0 4px 12px rgba(6, 182, 212, 0.2);
+        }
+
+        input::placeholder {
+            color: #94a3b8;
+            font-weight: 400;
+            letter-spacing: 0.3px;
+        }
+
+        .role-hint {
+            font-size: 0.7rem;
+            color: #7dd3fc;
+            margin-top: 4px;
+            margin-left: 10px;
+            opacity: 0.8;
+            letter-spacing: 0.3px;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 0.8rem;
+            border: none;
+            border-radius: 40px;
+            background: linear-gradient(95deg, #06b6d4, #0891b2);
+            color: #0a0f1f;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 12px rgba(6, 182, 212, 0.3);
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            background: linear-gradient(95deg, #22d3ee, #0e7b9e);
+            box-shadow: 0 8px 20px rgba(6, 182, 212, 0.5);
+        }
+
+        button:active {
+            transform: translateY(1px);
+        }
+
+        .login-redirect {
+            text-align: center;
+            margin-top: 1.5rem;
+            font-size: 0.85rem;
+            color: #cbd5e1;
+        }
+
+        .login-redirect a {
+            color: #67e8f9;
+            text-decoration: none;
+            font-weight: 600;
+            border-bottom: 1px dashed #06b6d4;
+            transition: 0.2s;
+        }
+
+        .login-redirect a:hover {
+            color: #ffffff;
+            border-bottom-style: solid;
+        }
+
+        .loading-txt {
+            display: none;
+            text-align: center;
+            margin-top: 12px;
+            font-size: 0.75rem;
+            color: #7dd3fc;
+        }
+
+        .success-msg {
+            display: none;
+            text-align: center;
+            margin-top: 12px;
+            font-size: 0.8rem;
+            color: #22c55e;
+            background: rgba(34, 197, 94, 0.1);
+            padding: 8px;
+            border-radius: 8px;
+        }
+
+        .error-msg {
+            display: none;
+            text-align: center;
+            margin-top: 12px;
+            font-size: 0.8rem;
+            color: #ef4444;
+            background: rgba(239, 68, 68, 0.1);
+            padding: 8px;
+            border-radius: 8px;
+        }
+
+        @media (max-width: 450px) {
+            .card {
+                padding: 1.6rem;
+                max-width: 100%;
+            }
+
+            h2 {
+                font-size: 1.6rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="card">
+        <h2>
+            <span>⚡</span> AI Project Register
+        </h2>
+
+        <div class="input-group">
+            <input type="text" id="name" placeholder="Full Name" autocomplete="name">
+        </div>
+        <div class="input-group">
+            <input type="text" id="id" placeholder="User ID / Username" autocomplete="username">
+        </div>
+        <div class="input-group">
+            <input type="password" id="pass" placeholder="Password" autocomplete="new-password">
+        </div>
+        <div class="input-group">
+            <input type="password" id="cpass" placeholder="Confirm Password" autocomplete="off">
+        </div>
+
+        <div class="input-group">
+            <input type="email" id="email" placeholder="Email address" autocomplete="email">
+        </div>
+
+        <div class="input-group">
+            <select id="roleSelect">
+                <option value="" disabled selected>— Select your role —</option>
+                <option value="Student">🎓 Student</option>
+                <option value="Teacher">📚 Teacher</option>
+                <option value="Admin">⚙️ Admin</option>
+            </select>
+            <div class="role-hint">Choose your account type</div>
+        </div>
+
+        <button id="registerBtn" onclick="register()">🚀 Create Account</button>
+
+        <div class="login-redirect">
+            Already have an account? <a href="login.html">Sign in</a>
+        </div>
+
+        <div id="loaderMsg" class="loading-txt"></div>
+        <div id="successMsg" class="success-msg"></div>
+        <div id="errorMsg" class="error-msg"></div>
+    </div>
+
+    <script>
+        // Complete Registration Function
+        async function register() {
+            // Hide previous messages
+            document.getElementById("successMsg").style.display = "none";
+            document.getElementById("errorMsg").style.display = "none";
+
+            // Get all field values
+            let name = document.getElementById("name").value.trim();
+            let userId = document.getElementById("id").value.trim();
+            let pass = document.getElementById("pass").value;
+            let cpass = document.getElementById("cpass").value;
+            let email = document.getElementById("email").value.trim();
+            let selectedRole = document.getElementById("roleSelect").value;
+
+            // Validation
+            if (!name || !userId || !pass || !cpass || !email) {
+                showError("Please fill all fields: Full Name, User ID, Password, Confirm Password, Email.");
+                return;
+            }
+
+            if (!selectedRole) {
+                showError("Please select a role: Teacher, Admin, or Student.");
+                return;
+            }
+
+            if (pass !== cpass) {
+                showError("Password and Confirm Password do not match.");
+                return;
+            }
+
+            const emailPattern = /^[^\s@]+@([^\s@]+\.)+[^\s@]+$/;
+            if (!emailPattern.test(email)) {
+                showError("Please enter a valid email address.");
+                return;
+            }
+
+            if (pass.length < 4) {
+                showError("Password must be at least 4 characters long.");
+                return;
+            }
+
+            if (userId.length < 3) {
+                showError("User ID must be at least 3 characters.");
+                return;
+            }
+
+            const data = {
+                fullName: name,
+                email: email,
+                password: pass,
+                phone: "9999999999",
+                role: selectedRole
+            };
+
+            const registerBtn = document.getElementById("registerBtn");
+            const originalBtnText = registerBtn.innerText;
+            registerBtn.innerText = "⏳ Registering...";
+            registerBtn.disabled = true;
+
+            const loaderDiv = document.getElementById("loaderMsg");
+            loaderDiv.style.display = "block";
+            loaderDiv.innerText = "Connecting to server...";
+
+            try {
+                // 🔥 Using localhost (your Node.js server)
+                const response = await fetch('http://localhost:5068/api/Auth/register', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+
+                let result = null;
+                const rawText = await response.text();
+                try {
+                    result = rawText ? JSON.parse(rawText) : {};
+                } catch (e) {
+                    result = { message: rawText || "Registration processed" };
+                }
+
+                if (response.ok) {
+                    loaderDiv.style.display = "none";
+                    showSuccess('✅ ' + (result.message || `Account created as ${selectedRole}! Redirecting...`));
+                    registerBtn.innerText = "✅ Success!";
+
+                    // Redirect after 2 seconds
+                    setTimeout(() => {
+                        window.location.href = "login.html";
+                    }, 2000);
+                } else {
+                    loaderDiv.style.display = "none";
+                    let errorMsg = result.message || result.title || `Registration failed`;
+                    if (typeof result === 'string') errorMsg = result;
+                    else if (result.errors) {
+                        const errList = Object.values(result.errors).flat();
+                        if (errList.length) errorMsg = errList[0];
+                    }
+                    showError('❌ ' + errorMsg);
+                    registerBtn.innerText = originalBtnText;
+                    registerBtn.disabled = false;
+                }
+            } catch (error) {
+                console.error("Error:", error);
+                loaderDiv.style.display = "none";
+                showError('⚠️ Cannot connect to server! Make sure Node.js server is running.\nRun: node server.js');
+                registerBtn.innerText = originalBtnText;
+                registerBtn.disabled = false;
+            }
+        }
+
+        function showSuccess(message) {
+            const successDiv = document.getElementById("successMsg");
+            successDiv.innerText = message;
+            successDiv.style.display = "block";
+            setTimeout(() => {
+                successDiv.style.display = "none";
+            }, 3000);
+        }
+
+        function showError(message) {
+            const errorDiv = document.getElementById("errorMsg");
+            errorDiv.innerText = message;
+            errorDiv.style.display = "block";
+            setTimeout(() => {
+                errorDiv.style.display = "none";
+            }, 4000);
+        }
+
+        // Real-time password match visual feedback
+        const passField = document.getElementById("pass");
+        const cpassField = document.getElementById("cpass");
+
+        function validatePasswordMatch() {
+            if (cpassField.value.length > 0 && passField.value !== cpassField.value) {
+                cpassField.style.borderBottomColor = "#f97316";
+                cpassField.style.boxShadow = "0 0 0 1px rgba(249,115,22,0.3)";
+            } else if (cpassField.value.length > 0 && passField.value === cpassField.value) {
+                cpassField.style.borderBottomColor = "#22c55e";
+                cpassField.style.boxShadow = "none";
+            } else {
+                cpassField.style.borderBottomColor = "rgba(6, 182, 212, 0.5)";
+            }
+        }
+
+        if (passField && cpassField) {
+            passField.addEventListener("input", validatePasswordMatch);
+            cpassField.addEventListener("input", validatePasswordMatch);
+        }
+
+        // Enter key press
+        const allInputs = document.querySelectorAll('input, select');
+        allInputs.forEach(field => {
+            field.addEventListener('keypress', function (e) {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    register();
+                }
+            });
+        });
+
+        console.log("✅ Registration form ready! Make sure Node.js server is running on localhost:5068");
+    </script>
+</body>
+
+</html>

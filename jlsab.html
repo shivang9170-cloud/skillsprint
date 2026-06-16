@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>EliteResume · .NET Developer (Projects)</title>
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Google Fonts: Inter + Playfair Display -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Playfair+Display:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(145deg, #e9f0fa 0%, #d4e0f0 100%);
+            min-height: 100vh;
+            padding: 2rem;
+            color: #1a2a3a;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem;
+            background: linear-gradient(135deg, #0b2a4a, #1e4b7a);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: -0.5px;
+        }
+
+        .header p {
+            color: #1e3a5f;
+            font-weight: 500;
+            margin-top: 0.4rem;
+        }
+
+        .builder-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.1fr;
+            gap: 2rem;
+        }
+
+        /* Form Panel */
+        .form-panel {
+            background: rgba(255, 255, 255, 0.94);
+            backdrop-filter: blur(2px);
+            border-radius: 32px;
+            padding: 1.8rem;
+            box-shadow: 0 20px 35px -10px rgba(0, 20, 40, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            height: 85vh;
+            overflow-y: auto;
+        }
+
+        .form-panel::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .form-panel::-webkit-scrollbar-track {
+            background: #dce5f0;
+            border-radius: 10px;
+        }
+
+        .form-panel::-webkit-scrollbar-thumb {
+            background: #1e4b7a;
+            border-radius: 10px;
+        }
+
+        .section-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin: 1.5rem 0 0.8rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            color: #0b2a4a;
+            border-left: 4px solid #1e4b7a;
+            padding-left: 12px;
+        }
+
+        .section-title:first-of-type {
+            margin-top: 0;
+        }
+
+        .input-group {
+            margin-bottom: 1rem;
+        }
+
+        .input-group label {
+            display: block;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.25rem;
+            color: #1e3a5f;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            padding: 0.7rem 1rem;
+            border: 1.5px solid #d5dfec;
+            border-radius: 18px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+            background: white;
+        }
+
+        input:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #1e4b7a;
+            box-shadow: 0 0 0 3px rgba(30, 75, 122, 0.15);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 60px;
+        }
+
+        .dynamic-list {
+            background: #f2f6fd;
+            border-radius: 20px;
+            padding: 0.8rem;
+            margin-bottom: 0.8rem;
+            border-left: 3px solid #1e4b7a;
+        }
+
+        .list-item {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 0.6rem;
+            align-items: center;
+        }
+
+        .list-item input {
+            flex: 1;
+        }
+
+        .btn-icon {
+            background: none;
+            border: none;
+            font-size: 1.2rem;
+            cursor: pointer;
+            color: #b22234;
+            transition: 0.1s;
+            width: 34px;
+            height: 34px;
+            border-radius: 12px;
+        }
+
+        .btn-icon:hover {
+            background: #f0d6d6;
+        }
+
+        .btn-add {
+            background: #e7eefa;
+            border: 1.5px dashed #1e4b7a;
+            border-radius: 40px;
+            padding: 0.5rem 1rem;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #1e4b7a;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 0.2rem;
+        }
+
+        .btn-add i {
+            margin-right: 6px;
+        }
+
+        /* Preview Panel */
+        .preview-panel {
+            background: white;
+            border-radius: 32px;
+            box-shadow: 0 25px 40px -12px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            height: 85vh;
+        }
+
+        .preview-header {
+            background: #0f2b44;
+            padding: 1rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+        }
+
+        .preview-header h3 {
+            color: white;
+            font-weight: 600;
+            font-size: 1.2rem;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 0.8rem;
+        }
+
+        .btn-primary {
+            background: #2a7a6b;
+            border: none;
+            padding: 0.45rem 1.2rem;
+            border-radius: 40px;
+            font-weight: 600;
+            color: white;
+            cursor: pointer;
+            transition: 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary:hover {
+            background: #1d6154;
+            transform: scale(0.97);
+        }
+
+        .btn-secondary {
+            background: #e6c87a;
+            color: #1e2f3f;
+            border: none;
+            padding: 0.45rem 1.2rem;
+            border-radius: 40px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .resume-preview {
+            flex: 1;
+            overflow-y: auto;
+            padding: 2rem;
+            background: #fcfdff;
+        }
+
+        /* Resume Card - .NET style */
+        .resume-card {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 24px;
+            padding: 2rem 2rem 1.8rem;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.04);
+            font-family: 'Inter', sans-serif;
+        }
+
+        .resume-name {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: #0b2a4a;
+            letter-spacing: -0.5px;
+            margin-bottom: 0.2rem;
+        }
+
+        .resume-title {
+            font-size: 1.1rem;
+            color: #1e6b5e;
+            font-weight: 600;
+            margin-bottom: 0.4rem;
+            border-bottom: 2px solid #e0e8f2;
+            padding-bottom: 0.3rem;
+        }
+
+        .resume-contact {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.2rem;
+            font-size: 0.8rem;
+            color: #2d4059;
+            margin-bottom: 1.2rem;
+        }
+
+        .resume-contact i {
+            width: 16px;
+            color: #1e4b7a;
+        }
+
+        .resume-section {
+            margin: 1.2rem 0;
+        }
+
+        .resume-section h3 {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: #1a3f62;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.2px;
+            border-left: 3px solid #1e4b7a;
+            padding-left: 10px;
+        }
+
+        .resume-summary {
+            background: #f0f5fd;
+            padding: 0.7rem 1rem;
+            border-radius: 16px;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .resume-item {
+            margin-bottom: 0.6rem;
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+
+        .resume-item strong {
+            font-weight: 700;
+            color: #0b2a4a;
+        }
+
+        .project-link {
+            display: inline-block;
+            font-size: 0.85rem;
+            background: #1e4b7a;
+            color: white !important;
+            padding: 0.2rem 1rem;
+            border-radius: 30px;
+            text-decoration: none;
+            margin-left: 0.5rem;
+            font-weight: 500;
+            transition: 0.2s;
+        }
+
+        .project-link i {
+            margin-right: 4px;
+        }
+
+        .project-link:hover {
+            background: #0f2b44;
+            transform: scale(1.02);
+        }
+
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .skill-tag {
+            background: #e6edf8;
+            padding: 0.25rem 1rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: #0b2a4a;
+        }
+
+        hr {
+            margin: 0.8rem 0;
+            border-color: #dfe7f0;
+        }
+
+        @media (max-width: 1000px) {
+            .builder-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            body {
+                padding: 1rem;
+            }
+
+            .form-panel,
+            .preview-panel {
+                height: auto;
+                max-height: 70vh;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h1><i class="fas fa-code"></i> EliteResume · .NET (Projects)</h1>
+            <p>ATS-friendly resume for .NET developers · highlight projects with live links</p>
+        </div>
+        <div class="builder-grid">
+            <!-- FORM PANEL -->
+            <div class="form-panel" id="formPanel">
+                <div class="section-title"><i class="fas fa-user-circle"></i> Personal Details</div>
+                <div class="input-group"><label>Full Name</label><input type="text" id="fullName"
+                        placeholder="e.g., Himanshu" value="Himanshu"></div>
+                <div class="input-group"><label>Job Title / Role</label><input type="text" id="jobTitle"
+                        placeholder="e.g., .NET Developer" value=".NET Developer | Full Stack"></div>
+                <div class="input-group"><label>Email</label><input type="email" id="email"
+                        placeholder="himanshu@example.com" value="shivang.pandit@dev.com"></div>
+                <div class="input-group"><label>Phone</label><input type="text" id="phone" placeholder="+91 98765 43210"
+                        value="+91 9876543210"></div>
+                <div class="input-group"><label>LinkedIn / Portfolio</label><input type="text" id="social"
+                        placeholder="linkedin.com/in/himanshu" value="linkedin.com/in/shivang-pandit"></div>
+                <div class="input-group"><label>Career Objective / Summary</label><textarea id="summary"
+                        rows="3">Motivated and enthusiastic Computer Science student seeking an entry-level .NET Developer position where I can apply my knowledge of C#, ASP.NET, SQL Server, and web development while continuously learning and contributing to organizational growth.</textarea>
+                </div>
+
+                <!-- PROJECTS SECTION (replaces experience) -->
+                <div class="section-title"><i class="fas fa-folder-open"></i> Projects</div>
+                <div id="projectsContainer"></div>
+                <button class="btn-add" id="addProjectBtn"><i class="fas fa-plus-circle"></i> Add Project</button>
+
+                <div class="section-title"><i class="fas fa-graduation-cap"></i> Education</div>
+                <div id="educationContainer"></div>
+                <button class="btn-add" id="addEducationBtn"><i class="fas fa-plus-circle"></i> Add Education</button>
+
+                <div class="section-title"><i class="fas fa-code"></i> Technical Skills (comma separated)</div>
+                <div class="input-group"><textarea id="skillsInput"
+                        rows="2">C#, ASP.NET, ASP.NET MVC, .NET Core, HTML, CSS, JavaScript, Bootstrap, SQL Server, MySQL, Visual Studio, Git, OOP, REST API</textarea>
+                </div>
+
+                <div class="section-title"><i class="fas fa-certificate"></i> Certifications / Achievements</div>
+                <div id="certificationsContainer"></div>
+                <button class="btn-add" id="addCertBtn"><i class="fas fa-plus-circle"></i> Add Certification</button>
+            </div>
+
+            <!-- PREVIEW -->
+            <div class="preview-panel">
+                <div class="preview-header">
+                    <h3><i class="fas fa-eye"></i> Live Resume Preview</h3>
+                    <div class="action-buttons">
+                        <button class="btn-secondary" id="resetBtn"><i class="fas fa-undo-alt"></i> Reset</button>
+                        <button class="btn-primary" id="downloadPDFBtn"><i class="fas fa-download"></i> PDF</button>
+                    </div>
+                </div>
+                <div class="resume-preview" id="resumePreview"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"
+        integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        // ---------- DATA: Projects instead of work experience ----------
+        let projects = [
+            {
+                name: "Student Management System",
+                tech: "C#, ASP.NET, SQL Server",
+                desc: "Developed a web application for managing student records. Implemented CRUD operations, integrated SQL Server database, and created a user-friendly interface.",
+                link: "https://github.com/himanshu/student-mgmt"
+            },
+            {
+                name: "Personal Portfolio Website",
+                tech: "HTML, CSS, JavaScript",
+                desc: "Designed and developed a responsive portfolio website showcasing projects, skills, and contact information. Optimized for mobile and desktop devices.",
+                link: "https://himanshu.dev"
+            },
+            {
+                name: "E-Commerce REST API",
+                tech: "ASP.NET Core, Entity Framework, JWT",
+                desc: "Built a secure RESTful API for an e-commerce platform with JWT authentication, role-based authorization, and Swagger documentation.",
+                link: "https://github.com/himanshu/ecom-api"
+            }
+        ];
+
+        let educations = [
+            { degree: "B.Tech (Information Technology)", institution: "Dr. A. P. J. Abdul Kalam Technical University, Lucknow", year: "2023-2027 (Expected)", grade: "Current Year : 4th year" }
+        ];
+        let certifications = [
+            { name: "YANTROTSAV Project competition 3rd position", issuer: "INNOVISTA" },
+            { name: "ASP.NET MVC Development", issuer: "self" },
+            { name: "SQL Server Basics", issuer: "self" }
+        ];
+
+        // DOM refs
+        const fullNameInput = document.getElementById('fullName');
+        const jobTitleInput = document.getElementById('jobTitle');
+        const emailInput = document.getElementById('email');
+        const phoneInput = document.getElementById('phone');
+        const socialInput = document.getElementById('social');
+        const summaryInput = document.getElementById('summary');
+        const skillsInput = document.getElementById('skillsInput');
+        const projectsContainer = document.getElementById('projectsContainer');
+        const eduContainer = document.getElementById('educationContainer');
+        const certContainer = document.getElementById('certificationsContainer');
+        const resumePreviewDiv = document.getElementById('resumePreview');
+
+        function escapeHtml(str) { if (!str) return ''; return str.replace(/[&<>]/g, function (m) { if (m === '&') return '&amp;'; if (m === '<') return '&lt;'; if (m === '>') return '&gt;'; return m; }); }
+
+        // Render dynamic forms
+        function renderDynamicForms() {
+            // Projects
+            projectsContainer.innerHTML = '';
+            projects.forEach((proj, idx) => {
+                const div = document.createElement('div');
+                div.className = 'dynamic-list';
+                div.innerHTML = `
+        <div class="list-item"><input type="text" placeholder="Project Name" value="${escapeHtml(proj.name)}" data-proj-name="${idx}"></div>
+        <div class="list-item"><input type="text" placeholder="Tech Stack (e.g., C#, ASP.NET)" value="${escapeHtml(proj.tech)}" data-proj-tech="${idx}"></div>
+        <div class="list-item"><textarea placeholder="Description" data-proj-desc="${idx}">${escapeHtml(proj.desc)}</textarea></div>
+        <div class="list-item"><input type="text" placeholder="Project Link (URL)" value="${escapeHtml(proj.link)}" data-proj-link="${idx}"></div>
+        <button class="btn-icon remove-proj" data-idx="${idx}"><i class="fas fa-trash-alt"></i></button>
+      `;
+                projectsContainer.appendChild(div);
+            });
+
+            // Education
+            eduContainer.innerHTML = '';
+            educations.forEach((edu, idx) => {
+                const div = document.createElement('div');
+                div.className = 'dynamic-list';
+                div.innerHTML = `
+        <div class="list-item"><input type="text" placeholder="Degree" value="${escapeHtml(edu.degree)}" data-edu-degree="${idx}"></div>
+        <div class="list-item"><input type="text" placeholder="Institution" value="${escapeHtml(edu.institution)}" data-edu-inst="${idx}"></div>
+        <div class="list-item"><input type="text" placeholder="Year" value="${escapeHtml(edu.year)}" data-edu-year="${idx}"></div>
+        <div class="list-item"><input type="text" placeholder="Grade/GPA" value="${escapeHtml(edu.grade)}" data-edu-grade="${idx}"></div>
+        <button class="btn-icon remove-edu" data-idx="${idx}"><i class="fas fa-trash-alt"></i></button>
+      `;
+                eduContainer.appendChild(div);
+            });
+
+            // Certifications
+            certContainer.innerHTML = '';
+            certifications.forEach((cert, idx) => {
+                const div = document.createElement('div');
+                div.className = 'dynamic-list';
+                div.innerHTML = `
+        <div class="list-item"><input type="text" placeholder="Certification name" value="${escapeHtml(cert.name)}" data-cert-name="${idx}"></div>
+        <div class="list-item"><input type="text" placeholder="Issuer" value="${escapeHtml(cert.issuer)}" data-cert-issuer="${idx}"></div>
+        <button class="btn-icon remove-cert" data-idx="${idx}"><i class="fas fa-trash-alt"></i></button>
+      `;
+                certContainer.appendChild(div);
+            });
+
+            attachRemoveEvents();
+            attachInputSyncEvents();
+        }
+
+        function attachRemoveEvents() {
+            document.querySelectorAll('.remove-proj').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const idx = parseInt(btn.dataset.idx);
+                    projects.splice(idx, 1);
+                    renderDynamicForms();
+                    updateResumePreview();
+                });
+            });
+            document.querySelectorAll('.remove-edu').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const idx = parseInt(btn.dataset.idx);
+                    educations.splice(idx, 1);
+                    renderDynamicForms();
+                    updateResumePreview();
+                });
+            });
+            document.querySelectorAll('.remove-cert').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const idx = parseInt(btn.dataset.idx);
+                    certifications.splice(idx, 1);
+                    renderDynamicForms();
+                    updateResumePreview();
+                });
+            });
+        }
+
+        function attachInputSyncEvents() {
+            // Projects sync
+            for (let i = 0; i < projects.length; i++) {
+                const nameInp = document.querySelector(`[data-proj-name="${i}"]`);
+                const techInp = document.querySelector(`[data-proj-tech="${i}"]`);
+                const descInp = document.querySelector(`[data-proj-desc="${i}"]`);
+                const linkInp = document.querySelector(`[data-proj-link="${i}"]`);
+                if (nameInp) nameInp.addEventListener('input', (e) => { if (projects[i]) projects[i].name = e.target.value; updateResumePreview(); });
+                if (techInp) techInp.addEventListener('input', (e) => { if (projects[i]) projects[i].tech = e.target.value; updateResumePreview(); });
+                if (descInp) descInp.addEventListener('input', (e) => { if (projects[i]) projects[i].desc = e.target.value; updateResumePreview(); });
+                if (linkInp) linkInp.addEventListener('input', (e) => { if (projects[i]) projects[i].link = e.target.value; updateResumePreview(); });
+            }
+            // Education sync
+            for (let i = 0; i < educations.length; i++) {
+                const deg = document.querySelector(`[data-edu-degree="${i}"]`);
+                const inst = document.querySelector(`[data-edu-inst="${i}"]`);
+                const yr = document.querySelector(`[data-edu-year="${i}"]`);
+                const grd = document.querySelector(`[data-edu-grade="${i}"]`);
+                if (deg) deg.addEventListener('input', (e) => { if (educations[i]) educations[i].degree = e.target.value; updateResumePreview(); });
+                if (inst) inst.addEventListener('input', (e) => { if (educations[i]) educations[i].institution = e.target.value; updateResumePreview(); });
+                if (yr) yr.addEventListener('input', (e) => { if (educations[i]) educations[i].year = e.target.value; updateResumePreview(); });
+                if (grd) grd.addEventListener('input', (e) => { if (educations[i]) educations[i].grade = e.target.value; updateResumePreview(); });
+            }
+            // Certifications sync
+            for (let i = 0; i < certifications.length; i++) {
+                const nameInp = document.querySelector(`[data-cert-name="${i}"]`);
+                const issuerInp = document.querySelector(`[data-cert-issuer="${i}"]`);
+                if (nameInp) nameInp.addEventListener('input', (e) => { if (certifications[i]) certifications[i].name = e.target.value; updateResumePreview(); });
+                if (issuerInp) issuerInp.addEventListener('input', (e) => { if (certifications[i]) certifications[i].issuer = e.target.value; updateResumePreview(); });
+            }
+        }
+
+        // ---------- Build resume preview with projects ----------
+        function updateResumePreview() {
+            const name = fullNameInput.value.trim() || "Himanshu";
+            const title = jobTitleInput.value.trim() || ".NET Developer";
+            const email = emailInput.value.trim();
+            const phone = phoneInput.value.trim();
+            const social = socialInput.value.trim();
+            const summary = summaryInput.value.trim() || "Motivated and enthusiastic Computer Science student seeking an entry-level .NET Developer position.";
+            const skillsArray = skillsInput.value.split(',').map(s => s.trim()).filter(s => s);
+
+            // Projects HTML with prominent link button
+            const projectsHTML = projects.map(p => {
+                let linkHtml = '';
+                if (p.link && p.link.trim() !== '') {
+                    linkHtml = `<a href="${escapeHtml(p.link)}" target="_blank" class="project-link"><i class="fas fa-external-link-alt"></i> View Project</a>`;
+                }
+                return `<div class="resume-item"><strong>${escapeHtml(p.name)}</strong> <span style="font-size:0.8rem; color:#1e6b5e;">${escapeHtml(p.tech)}</span> ${linkHtml}<br><span style="font-size:0.85rem;">${escapeHtml(p.desc)}</span></div>`;
+            }).join('');
+
+            const eduHTML = educations.map(edu =>
+                `<div class="resume-item"><strong>${escapeHtml(edu.degree)}</strong> · ${escapeHtml(edu.institution)} (${escapeHtml(edu.year)}) — ${escapeHtml(edu.grade)}</div>`
+            ).join('');
+            const certHTML = certifications.map(cert =>
+                `<div class="resume-item">🏅 ${escapeHtml(cert.name)} — ${escapeHtml(cert.issuer)}</div>`
+            ).join('');
+
+            const skillsHTML = `<div class="skills-list">${skillsArray.map(s => `<span class="skill-tag">${escapeHtml(s)}</span>`).join('')}</div>`;
+
+            const finalHTML = `
+      <div class="resume-card" id="resumeToDownload">
+        <div class="resume-name">${escapeHtml(name)}</div>
+        <div class="resume-title">${escapeHtml(title)}</div>
+        <div class="resume-contact">
+          <span><i class="fas fa-map-pin"></i> Delhi, India</span>
+          <span><i class="fas fa-envelope"></i> ${escapeHtml(email)}</span>
+          <span><i class="fas fa-phone-alt"></i> ${escapeHtml(phone)}</span>
+          ${social ? `<span><i class="fab fa-linkedin"></i> ${escapeHtml(social)}</span>` : ''}
+        </div>
+        <div class="resume-section">
+          <h3>📌 Career Objective</h3>
+          <div class="resume-summary">${escapeHtml(summary)}</div>
+        </div>
+        <div class="resume-section">
+          <h3>🚀 Projects</h3>
+          ${projectsHTML || '<p class="resume-item">No projects added</p>'}
+        </div>
+        <div class="resume-section">
+          <h3>🎓 Education</h3>
+          ${eduHTML || '<p class="resume-item">—</p>'}
+        </div>
+        <div class="resume-section">
+          <h3>⚡ Technical Skills</h3>
+          ${skillsHTML}
+        </div>
+        ${certifications.length ? `<div class="resume-section"><h3>🏆 Certifications</h3>${certHTML}</div>` : ''}
+        <div class="resume-section">
+          <h3>🌟 Strengths</h3>
+          <div class="skills-list"><span class="skill-tag">Quick Learner</span><span class="skill-tag">Problem Solving</span><span class="skill-tag">Teamwork</span><span class="skill-tag">Time Management</span><span class="skill-tag">Positive Attitude</span></div>
+        </div>
+        <hr>
+        <div style="font-size:0.7rem; text-align:center; color:gray;">EliteResume · .NET Developer (Projects)</div>
+      </div>
+    `;
+            resumePreviewDiv.innerHTML = finalHTML;
+        }
+
+        function bindSimpleInputs() {
+            [fullNameInput, jobTitleInput, emailInput, phoneInput, socialInput, summaryInput, skillsInput].forEach(inp =>
+                inp.addEventListener('input', () => updateResumePreview())
+            );
+        }
+
+        // Reset with projects (matches PDF style)
+        function resetToDefault() {
+            projects = [
+                {
+                    name: "Student Management System",
+                    tech: "C#, ASP.NET, SQL Server",
+                    desc: "Developed a web application for managing student records. Implemented CRUD operations, integrated SQL Server database, and created a user-friendly interface.",
+                    link: "https://github.com/himanshu/student-mgmt"
+                },
+                {
+                    name: "Personal Portfolio Website",
+                    tech: "HTML, CSS, JavaScript",
+                    desc: "Designed and developed a responsive portfolio website showcasing projects, skills, and contact information. Optimized for mobile and desktop devices.",
+                    link: "https://himanshu.dev"
+                },
+                {
+                    name: "E-Commerce REST API",
+                    tech: "ASP.NET Core, Entity Framework, JWT",
+                    desc: "Built a secure RESTful API for an e-commerce platform with JWT authentication, role-based authorization, and Swagger documentation.",
+                    link: "https://github.com/himanshu/ecom-api"
+                }
+            ];
+            educations = [
+                { degree: "B.Tech (Information Technology)", institution: "Dr. A. P. J. Abdul Kalam Technical University, Lucknow", year: "2023-2027 (Expected)", grade: "Current Year : 4th year" }
+            ];
+            certifications = [
+                { name: "YANTROTSAV Project competition 3rd position", issuer: "INNOVISTA" },
+                { name: "ASP.NET MVC Development", issuer: "self" },
+                { name: "SQL Server Basics", issuer: "self" }
+            ];
+            fullNameInput.value = "Himanshu";
+            jobTitleInput.value = ".NET Developer | Full Stack";
+            emailInput.value = "shivang.pandit@dev.com";
+            phoneInput.value = "+91 9876543210";
+            socialInput.value = "linkedin.com/in/shivang-pandit";
+            summaryInput.value = "Motivated and enthusiastic Computer Science student seeking an entry-level .NET Developer position where I can apply my knowledge of C#, ASP.NET, SQL Server, and web development while continuously learning and contributing to organizational growth.";
+            skillsInput.value = "C#, ASP.NET, ASP.NET MVC, .NET Core, HTML, CSS, JavaScript, Bootstrap, SQL Server, MySQL, Visual Studio, Git, OOP, REST API";
+            renderDynamicForms();
+            updateResumePreview();
+        }
+
+        // Add handlers
+        document.getElementById('addProjectBtn').addEventListener('click', () => {
+            projects.push({ name: "New Project", tech: "Tech Stack", desc: "Description", link: "" });
+            renderDynamicForms();
+            updateResumePreview();
+        });
+        document.getElementById('addEducationBtn').addEventListener('click', () => {
+            educations.push({ degree: "Master's Degree", institution: "University", year: "2022-2025", grade: "A" });
+            renderDynamicForms();
+            updateResumePreview();
+        });
+        document.getElementById('addCertBtn').addEventListener('click', () => {
+            certifications.push({ name: "New Certification", issuer: "Issuer Org" });
+            renderDynamicForms();
+            updateResumePreview();
+        });
+        document.getElementById('resetBtn').addEventListener('click', resetToDefault);
+        document.getElementById('downloadPDFBtn').addEventListener('click', async function () {
+            const element = document.getElementById('resumeToDownload');
+            if (!element) return;
+            const opt = {
+                margin: [0.5, 0.5, 0.5, 0.5],
+                filename: `${fullNameInput.value.trim() || "Resume"}_DotNet_Projects.pdf`,
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 2, letterRendering: true },
+                jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' }
+            };
+            try {
+                await html2pdf().set(opt).from(element).save();
+            } catch (e) {
+                alert("PDF generation failed, but you can use browser print to PDF.");
+            }
+        });
+
+        // Init
+        renderDynamicForms();
+        bindSimpleInputs();
+        updateResumePreview();
+    </script>
+</body>
+
+</html>

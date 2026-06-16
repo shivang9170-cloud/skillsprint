@@ -1,0 +1,1838 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background: #0a0f1c;
+    color: white;
+    height: 100vh;
+    overflow: hidden;
+}
+
+nav {
+    background: #0f172a;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #1f2937;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+nav h1 {
+    color: #06b6d4;
+    font-size: 20px;
+}
+
+.nav-items {
+    display: flex;
+    gap: 15px;
+    overflow-x: auto;
+}
+
+.nav-items div {
+    cursor: pointer;
+    text-align: center;
+    transition: 0.3s;
+    min-width: 50px;
+}
+
+.nav-items div i {
+    font-size: 16px;
+    display: block;
+}
+
+.nav-items div span {
+    font-size: 10px;
+}
+
+.nav-items div:hover {
+    color: #06b6d4;
+    transform: translateY(-3px);
+}
+
+.main {
+    display: flex;
+    height: calc(100vh - 56px);
+}
+
+.sidebar {
+    width: 250px;
+    background: #0f172a;
+    padding: 15px;
+    border-right: 1px solid #1f2937;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    overflow-y: auto;
+}
+
+.profile-mini-card {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    background: #1e293b;
+    border-radius: 12px;
+}
+
+.stories {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    padding-bottom: 5px;
+}
+
+.story {
+    min-width: 60px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.story-circle {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: linear-gradient(45deg, #06b6d4, #9333ea);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: bold;
+    margin: 0 auto 5px;
+    border: 2px solid #06b6d4;
+}
+
+.story span {
+    font-size: 10px;
+    display: block;
+}
+
+.menu {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.menu button {
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.05);
+    border: none;
+    border-radius: 10px;
+    color: white;
+    cursor: pointer;
+    text-align: left;
+    transition: 0.3s;
+}
+
+.menu button:hover {
+    background: #06b6d4;
+    transform: translateX(5px);
+}
+
+.content {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.panel {
+    display: none;
+}
+
+.panel.active {
+    display: block;
+}
+
+.create-post {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    background: #1e293b;
+    padding: 15px;
+    border-radius: 15px;
+    margin-bottom: 20px;
+}
+
+.create-post input {
+    flex: 1;
+    padding: 12px;
+    border-radius: 25px;
+    border: none;
+    background: #0f172a;
+    color: white;
+}
+
+.create-post button {
+    background: #06b6d4;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 25px;
+    color: white;
+    cursor: pointer;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.stat-card {
+    background: #1e293b;
+    padding: 15px;
+    border-radius: 12px;
+    text-align: center;
+}
+
+.stat-number {
+    font-size: 28px;
+    font-weight: bold;
+    color: #06b6d4;
+}
+
+.feed-post {
+    background: #1e293b;
+    border-radius: 15px;
+    margin-bottom: 15px;
+    overflow: hidden;
+}
+
+.feed-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px;
+    border-bottom: 1px solid #334155;
+}
+
+.feed-content {
+    padding: 12px;
+}
+
+.feed-content p {
+    margin-bottom: 8px;
+    line-height: 1.4;
+}
+
+.feed-actions {
+    display: flex;
+    gap: 20px;
+    padding: 10px 12px;
+    border-top: 1px solid #334155;
+}
+
+.feed-actions button {
+    background: transparent;
+    border: none;
+    color: #94a3b8;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.feed-actions button:hover {
+    color: #06b6d4;
+}
+
+.feed-actions .liked {
+    color: #ef4444;
+}
+
+.comments-section {
+    padding: 12px;
+    background: #0f172a;
+    border-top: 1px solid #334155;
+}
+
+.comment-input {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 10px;
+}
+
+.comment-input input {
+    flex: 1;
+    padding: 8px;
+    border-radius: 20px;
+    border: none;
+    background: #1e293b;
+    color: white;
+}
+
+.comment {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 8px;
+    font-size: 13px;
+}
+
+.comment small {
+    color: #64748b;
+    font-size: 10px;
+}
+
+.shared-post {
+    background: #0f172a;
+    padding: 10px;
+    border-radius: 10px;
+    margin-top: 8px;
+    font-size: 13px;
+    border-left: 3px solid #06b6d4;
+}
+
+.courses-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.course-card {
+    background: #1e293b;
+    padding: 15px;
+    border-radius: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.course-card h4 {
+    margin-bottom: 5px;
+}
+
+.course-meta {
+    font-size: 12px;
+    color: #94a3b8;
+    margin-bottom: 5px;
+}
+
+.course-desc {
+    font-size: 13px;
+    margin-bottom: 5px;
+}
+
+.course-stats {
+    font-size: 11px;
+    color: #06b6d4;
+}
+
+.enroll-btn {
+    background: #10b981;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 8px;
+    color: white;
+    cursor: pointer;
+}
+
+.enrolled-btn {
+    background: #06b6d4;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 8px;
+    color: white;
+    cursor: pointer;
+}
+
+.progress-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 8px;
+}
+
+.progress-bar {
+    background: #334155;
+    border-radius: 10px;
+    height: 6px;
+    width: 150px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    background: #06b6d4;
+    height: 100%;
+}
+
+.search-bar {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.search-bar input {
+    flex: 1;
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    background: #1e293b;
+    color: white;
+}
+
+.search-bar select {
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    background: #1e293b;
+    color: white;
+}
+
+.teachers-grid,
+.students-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 15px;
+}
+
+.teacher-card,
+.student-card {
+    background: #1e293b;
+    padding: 15px;
+    border-radius: 12px;
+    text-align: center;
+}
+
+.avatar-circle-lg {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background: linear-gradient(45deg, #06b6d4, #9333ea);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    font-weight: bold;
+    margin: 0 auto 10px;
+}
+
+.avatar-circle-md {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: linear-gradient(45deg, #06b6d4, #9333ea);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    font-weight: bold;
+    margin: 0 auto 10px;
+}
+
+.avatar-circle-sm {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: linear-gradient(45deg, #06b6d4, #9333ea);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.avatar-circle-xs {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: linear-gradient(45deg, #06b6d4, #9333ea);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.teacher-card h4,
+.student-card h4 {
+    margin-bottom: 5px;
+}
+
+.small {
+    font-size: 12px;
+    color: #94a3b8;
+}
+
+.chat-container {
+    display: flex;
+    gap: 15px;
+    height: 500px;
+    margin-top: 15px;
+}
+
+.chat-users {
+    width: 250px;
+    background: #1e293b;
+    border-radius: 12px;
+    overflow-y: auto;
+}
+
+.chat-user {
+    padding: 12px;
+    cursor: pointer;
+    border-bottom: 1px solid #334155;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    position: relative;
+}
+
+.chat-user:hover {
+    background: #334155;
+}
+
+.chat-user.active {
+    background: #06b6d4;
+}
+
+.status {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    position: absolute;
+    right: 10px;
+}
+
+.status.online {
+    background: #10b981;
+}
+
+.status.offline {
+    background: #64748b;
+}
+
+.chat-area {
+    flex: 1;
+    background: #1e293b;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+}
+
+.chat-header {
+    padding: 12px;
+    background: #0f172a;
+    border-radius: 12px 12px 0 0;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.chat-messages {
+    flex: 1;
+    padding: 15px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.message {
+    max-width: 70%;
+    padding: 8px 12px;
+    border-radius: 15px;
+}
+
+.message.sent {
+    background: #06b6d4;
+    align-self: flex-end;
+}
+
+.message.received {
+    background: #334155;
+    align-self: flex-start;
+}
+
+.message-time {
+    font-size: 10px;
+    color: #94a3b8;
+    margin-top: 4px;
+}
+
+.chat-input {
+    display: flex;
+    padding: 12px;
+    gap: 8px;
+    border-top: 1px solid #334155;
+}
+
+.chat-input input {
+    flex: 1;
+    padding: 10px;
+    border-radius: 25px;
+    border: none;
+    background: #0f172a;
+    color: white;
+}
+
+.chat-input button {
+    background: #06b6d4;
+    border: none;
+    padding: 0 15px;
+    border-radius: 25px;
+    color: white;
+    cursor: pointer;
+}
+
+.leaderboard-card {
+    background: #1e293b;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.leader-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 12px;
+    border-bottom: 1px solid #334155;
+}
+
+.rank-1 {
+    background: linear-gradient(135deg, #f59e0b20, #ea580c20);
+    border-left: 3px solid #f59e0b;
+}
+
+.rank-2 {
+    background: linear-gradient(135deg, #94a3b820, #64748b20);
+    border-left: 3px solid #94a3b8;
+}
+
+.rank-3 {
+    background: linear-gradient(135deg, #b4530920, #92400e20);
+    border-left: 3px solid #b45309;
+}
+
+.rank {
+    font-size: 20px;
+    font-weight: bold;
+    width: 40px;
+}
+
+.leader-info {
+    flex: 1;
+}
+
+.leader-progress {
+    font-weight: bold;
+    color: #06b6d4;
+}
+
+.notice-card {
+    background: #1e293b;
+    padding: 15px;
+    border-radius: 12px;
+    margin-bottom: 12px;
+}
+
+.notice-card.important {
+    border-left: 3px solid #ef4444;
+}
+
+.notice-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+
+.notice-date {
+    font-size: 11px;
+    color: #64748b;
+}
+
+.profile-card {
+    background: #1e293b;
+    padding: 20px;
+    border-radius: 15px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.profile-stats {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 15px;
+}
+
+.profile-stats .stat {
+    font-size: 22px;
+    font-weight: bold;
+    color: #06b6d4;
+}
+
+.bio {
+    color: #94a3b8;
+    margin: 8px 0;
+}
+
+.edit-profile {
+    background: #1e293b;
+    padding: 20px;
+    border-radius: 15px;
+}
+
+.edit-profile input,
+.edit-profile textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 8px;
+    border: none;
+    background: #0f172a;
+    color: white;
+}
+
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: #1f2937;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #06b6d4;
+    border-radius: 10px;
+}
+
+h2 {
+    color: #06b6d4;
+    margin-bottom: 15px;
+    font-size: 18px;
+}
+
+h3 {
+    margin-bottom: 10px;
+    font-size: 16px;
+}
+
+.avatar-circle {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: linear-gradient(45deg, #06b6d4, #9333ea);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+/* ========== MODERN BUTTON STYLES ========== */
+
+/* All Buttons Base Style */
+button,
+.enroll-btn,
+.enrolled-btn,
+.menu button,
+.create-post button,
+.chat-input button,
+.comment-input button,
+.feed-actions button {
+    transition: all 0.3s ease;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Enroll Button */
+.enroll-btn {
+    background: linear-gradient(135deg, #10b981, #059669);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 25px;
+    color: white;
+    font-weight: bold;
+    box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+}
+
+.enroll-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(16, 185, 129, 0.5);
+    background: linear-gradient(135deg, #059669, #047857);
+}
+
+.enroll-btn:active {
+    transform: translateY(1px);
+}
+
+/* Continue/Enrolled Button */
+.enrolled-btn {
+    background: linear-gradient(135deg, #06b6d4, #0891b2);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 25px;
+    color: white;
+    font-weight: bold;
+    box-shadow: 0 4px 15px rgba(6, 182, 212, 0.3);
+}
+
+.enrolled-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(6, 182, 212, 0.5);
+    background: linear-gradient(135deg, #0891b2, #0e7490);
+}
+
+/* Menu Buttons */
+.menu button {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 12px 15px;
+    font-weight: 500;
+    backdrop-filter: blur(10px);
+}
+
+.menu button:hover {
+    background: linear-gradient(135deg, #06b6d4, #0891b2);
+    transform: translateX(8px);
+    border-color: transparent;
+    box-shadow: 0 5px 20px rgba(6, 182, 212, 0.4);
+}
+
+.menu button span {
+    font-size: 14px;
+}
+
+/* Create Post Button */
+.create-post button {
+    background: linear-gradient(135deg, #06b6d4, #0891b2);
+    border: none;
+    padding: 10px 25px;
+    border-radius: 30px;
+    font-weight: bold;
+    box-shadow: 0 2px 10px rgba(6, 182, 212, 0.3);
+}
+
+.create-post button:hover {
+    transform: scale(1.02);
+    box-shadow: 0 5px 20px rgba(6, 182, 212, 0.5);
+}
+
+/* Chat Send Button */
+.chat-input button {
+    background: linear-gradient(135deg, #06b6d4, #0891b2);
+    border: none;
+    border-radius: 30px;
+    padding: 0 20px;
+    font-weight: bold;
+}
+
+.chat-input button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 3px 15px rgba(6, 182, 212, 0.4);
+}
+
+/* Comment Post Button */
+.comment-input button {
+    background: linear-gradient(135deg, #06b6d4, #0891b2);
+    border: none;
+    border-radius: 20px;
+    padding: 6px 15px;
+    font-size: 12px;
+}
+
+.comment-input button:hover {
+    transform: scale(1.02);
+    background: linear-gradient(135deg, #0891b2, #0e7490);
+}
+
+/* Feed Action Buttons (Like, Comment, Share) */
+.feed-actions button {
+    background: transparent;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 25px;
+    font-size: 14px;
+    transition: all 0.2s ease;
+}
+
+.feed-actions button:hover {
+    background: rgba(6, 182, 212, 0.2);
+    transform: translateY(-2px);
+}
+
+.feed-actions button:active {
+    transform: translateY(0);
+}
+
+.feed-actions .fa-heart.liked {
+    color: #ef4444;
+    animation: heartBeat 0.3s ease;
+}
+
+@keyframes heartBeat {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.3);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Message Button on Teacher/Student Cards */
+.teacher-card button,
+.student-card button {
+    background: linear-gradient(135deg, #06b6d4, #0891b2);
+    border: none;
+    padding: 8px 16px;
+    border-radius: 25px;
+    font-size: 12px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.teacher-card button:hover,
+.student-card button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(6, 182, 212, 0.4);
+}
+
+/* Nav Items Hover Effect */
+.nav-items div {
+    position: relative;
+}
+
+.nav-items div::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #06b6d4, #9333ea);
+    transition: width 0.3s ease;
+}
+
+.nav-items div:hover::after {
+    width: 80%;
+}
+
+/* Story Circle Hover */
+.story-circle {
+    transition: all 0.3s ease;
+}
+
+.story:hover .story-circle {
+    transform: scale(1.1);
+    box-shadow: 0 0 15px #06b6d4;
+}
+
+/* Course Card Button */
+.course-card button {
+    transition: all 0.3s ease;
+}
+
+.course-card button:hover {
+    transform: translateY(-3px) scale(1.02);
+}
+
+/* Profile Save Button */
+.edit-profile button {
+    background: linear-gradient(135deg, #10b981, #059669);
+    border: none;
+    padding: 12px 25px;
+    border-radius: 30px;
+    font-weight: bold;
+    font-size: 14px;
+    width: 100%;
+}
+
+.edit-profile button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 20px rgba(16, 185, 129, 0.4);
+}
+
+/* Load More Button (if any) */
+.load-more {
+    background: transparent;
+    border: 1px solid #06b6d4;
+    color: #06b6d4;
+    padding: 10px 20px;
+    border-radius: 30px;
+    margin-top: 20px;
+    width: 100%;
+}
+
+.load-more:hover {
+    background: #06b6d4;
+    color: white;
+    transform: translateY(-2px);
+}
+
+/* Ripple Effect on Buttons */
+button {
+    position: relative;
+    overflow: hidden;
+}
+
+button::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+button:active::after {
+    width: 200px;
+    height: 200px;
+}
+
+/* Active Tab Indicator */
+.nav-items div.active {
+    color: #06b6d4;
+}
+
+.nav-items div.active::after {
+    width: 80%;
+}
+
+/* Chat User Active State */
+.chat-user.active {
+    background: linear-gradient(135deg, #06b6d4, #0891b2);
+}
+
+/* Scroll to Top Button (optional) */
+.scroll-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: linear-gradient(135deg, #06b6d4, #0891b2);
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    opacity: 0;
+    transition: all 0.3s ease;
+    z-index: 1000;
+}
+
+.scroll-top.show {
+    opacity: 1;
+}
+
+.scroll-top:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 20px rgba(6, 182, 212, 0.5);
+}
+
+/* ========== MODERN BUTTON STYLES ========== */
+
+/* All Buttons Base Style */
+button,
+.enroll-btn,
+.enrolled-btn,
+.menu button,
+.create-post button,
+.chat-input button,
+.comment-input button,
+.feed-actions button {
+    transition: all 0.3s ease;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Enroll Button */
+.enroll-btn {
+    background: linear-gradient(135deg, #10b981, #059669);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 25px;
+    color: white;
+    font-weight: bold;
+    box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+}
+
+.enroll-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(16, 185, 129, 0.5);
+    background: linear-gradient(135deg, #059669, #047857);
+}
+
+.enroll-btn:active {
+    transform: translateY(1px);
+}
+
+/* Continue/Enrolled Button */
+.enrolled-btn {
+    background: linear-gradient(135deg, #06b6d4, #0891b2);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 25px;
+    color: white;
+    font-weight: bold;
+    box-shadow: 0 4px 15px rgba(6, 182, 212, 0.3);
+}
+
+.enrolled-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(6, 182, 212, 0.5);
+    background: linear-gradient(135deg, #0891b2, #0e7490);
+}
+
+/* Menu Buttons */
+.menu button {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 12px 15px;
+    font-weight: 500;
+    backdrop-filter: blur(10px);
+}
+
+.menu button:hover {
+    background: linear-gradient(135deg, #06b6d4, #0891b2);
+    transform: translateX(8px);
+    border-color: transparent;
+    box-shadow: 0 5px 20px rgba(6, 182, 212, 0.4);
+}
+
+.menu button span {
+    font-size: 14px;
+}
+
+/* Create Post Button */
+.create-post button {
+    background: linear-gradient(135deg, #06b6d4, #0891b2);
+    border: none;
+    padding: 10px 25px;
+    border-radius: 30px;
+    font-weight: bold;
+    box-shadow: 0 2px 10px rgba(6, 182, 212, 0.3);
+}
+
+.create-post button:hover {
+    transform: scale(1.02);
+    box-shadow: 0 5px 20px rgba(6, 182, 212, 0.5);
+}
+
+/* Chat Send Button */
+.chat-input button {
+    background: linear-gradient(135deg, #06b6d4, #0891b2);
+    border: none;
+    border-radius: 30px;
+    padding: 0 20px;
+    font-weight: bold;
+}
+
+.chat-input button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 3px 15px rgba(6, 182, 212, 0.4);
+}
+
+/* Comment Post Button */
+.comment-input button {
+    background: linear-gradient(135deg, #06b6d4, #0891b2);
+    border: none;
+    border-radius: 20px;
+    padding: 6px 15px;
+    font-size: 12px;
+}
+
+.comment-input button:hover {
+    transform: scale(1.02);
+    background: linear-gradient(135deg, #0891b2, #0e7490);
+}
+
+/* Feed Action Buttons (Like, Comment, Share) */
+.feed-actions button {
+    background: transparent;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 25px;
+    font-size: 14px;
+    transition: all 0.2s ease;
+}
+
+.feed-actions button:hover {
+    background: rgba(6, 182, 212, 0.2);
+    transform: translateY(-2px);
+}
+
+.feed-actions button:active {
+    transform: translateY(0);
+}
+
+.feed-actions .fa-heart.liked {
+    color: #ef4444;
+    animation: heartBeat 0.3s ease;
+}
+
+@keyframes heartBeat {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.3);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Message Button on Teacher/Student Cards */
+.teacher-card button,
+.student-card button {
+    background: linear-gradient(135deg, #06b6d4, #0891b2);
+    border: none;
+    padding: 8px 16px;
+    border-radius: 25px;
+    font-size: 12px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.teacher-card button:hover,
+.student-card button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(6, 182, 212, 0.4);
+}
+
+/* Nav Items Hover Effect */
+.nav-items div {
+    position: relative;
+}
+
+.nav-items div::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #06b6d4, #9333ea);
+    transition: width 0.3s ease;
+}
+
+.nav-items div:hover::after {
+    width: 80%;
+}
+
+/* Story Circle Hover */
+.story-circle {
+    transition: all 0.3s ease;
+}
+
+.story:hover .story-circle {
+    transform: scale(1.1);
+    box-shadow: 0 0 15px #06b6d4;
+}
+
+/* Course Card Button */
+.course-card button {
+    transition: all 0.3s ease;
+}
+
+.course-card button:hover {
+    transform: translateY(-3px) scale(1.02);
+}
+
+/* Profile Save Button */
+.edit-profile button {
+    background: linear-gradient(135deg, #10b981, #059669);
+    border: none;
+    padding: 12px 25px;
+    border-radius: 30px;
+    font-weight: bold;
+    font-size: 14px;
+    width: 100%;
+}
+
+.edit-profile button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 20px rgba(16, 185, 129, 0.4);
+}
+
+/* Load More Button (if any) */
+.load-more {
+    background: transparent;
+    border: 1px solid #06b6d4;
+    color: #06b6d4;
+    padding: 10px 20px;
+    border-radius: 30px;
+    margin-top: 20px;
+    width: 100%;
+}
+
+.load-more:hover {
+    background: #06b6d4;
+    color: white;
+    transform: translateY(-2px);
+}
+
+/* Ripple Effect on Buttons */
+button {
+    position: relative;
+    overflow: hidden;
+}
+
+button::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+button:active::after {
+    width: 200px;
+    height: 200px;
+}
+
+/* Active Tab Indicator */
+.nav-items div.active {
+    color: #06b6d4;
+}
+
+.nav-items div.active::after {
+    width: 80%;
+}
+
+/* Chat User Active State */
+.chat-user.active {
+    background: linear-gradient(135deg, #06b6d4, #0891b2);
+}
+
+/* Scroll to Top Button (optional) */
+.scroll-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: linear-gradient(135deg, #06b6d4, #0891b2);
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    opacity: 0;
+    transition: all 0.3s ease;
+    z-index: 1000;
+}
+
+.scroll-top.show {
+    opacity: 1;
+}
+
+.scroll-top:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 20px rgba(6, 182, 212, 0.5);
+}
+
+/* ========== LEARNING MODAL CSS ========== */
+
+/* Modal Background */
+#learningModal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    z-index: 9999;
+    overflow-y: auto;
+}
+
+/* Modal Container */
+#learningModal>div {
+    background: white;
+    margin: 40px auto;
+    width: 90%;
+    max-width: 1300px;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    animation: modalSlideIn 0.3s ease;
+}
+
+@keyframes modalSlideIn {
+    from {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Modal Header */
+#learningModal>div>div:first-child {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 20px 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#learningModal>div>div:first-child h2 {
+    margin: 0;
+    font-size: 24px;
+}
+
+#learningModal>div>div:first-child button {
+    background: none;
+    border: none;
+    font-size: 32px;
+    cursor: pointer;
+    color: white;
+    transition: transform 0.2s;
+}
+
+#learningModal>div>div:first-child button:hover {
+    transform: scale(1.1);
+}
+
+/* Main Content Area - Sidebar + Content */
+#learningModal>div>div:last-child {
+    display: flex;
+    height: 70vh;
+    min-height: 500px;
+}
+
+/* Sidebar - Modules List */
+#learningModal>div>div:last-child>div:first-child {
+    width: 320px;
+    background: #f8f9fa;
+    border-right: 1px solid #e9ecef;
+    overflow-y: auto;
+    padding: 20px;
+}
+
+#learningModal>div>div:last-child>div:first-child h3 {
+    margin-bottom: 20px;
+    color: #333;
+    font-size: 18px;
+}
+
+/* Module Items */
+#learningModal #modulesList {
+    margin-top: 10px;
+}
+
+#learningModal #modulesList>div {
+    padding: 14px;
+    margin-bottom: 10px;
+    background: white;
+    border-radius: 12px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    transition: all 0.3s;
+    border: 1px solid #e9ecef;
+}
+
+#learningModal #modulesList>div:hover {
+    background: #e7f0ff;
+    border-color: #667eea;
+    transform: translateX(5px);
+}
+
+#learningModal #modulesList>div>div:first-child {
+    font-size: 22px;
+}
+
+#learningModal #modulesList>div>div:last-child {
+    flex: 1;
+}
+
+#learningModal #modulesList>div strong {
+    display: block;
+    font-size: 14px;
+    color: #333;
+}
+
+#learningModal #modulesList>div small {
+    font-size: 11px;
+    color: #6c757d;
+}
+
+/* Progress Section */
+#learningModal>div>div:last-child>div:first-child>div:last-child {
+    margin-top: 25px;
+    padding-top: 20px;
+    border-top: 2px solid #e9ecef;
+}
+
+#learningModal .progress-bar-bg {
+    background: #e9ecef;
+    border-radius: 10px;
+    overflow: hidden;
+    height: 10px;
+}
+
+#learningModal .progress-bar-fill {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    height: 100%;
+    transition: width 0.3s ease;
+}
+
+/* Right Content Area */
+#learningModal>div>div:last-child>div:last-child {
+    flex: 1;
+    padding: 30px;
+    overflow-y: auto;
+}
+
+/* Module Content Styles */
+#learningContent h2 {
+    color: #333;
+    margin-bottom: 20px;
+    font-size: 24px;
+}
+
+/* Video Placeholder */
+#learningContent .video-placeholder {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 60px;
+    text-align: center;
+    border-radius: 15px;
+    margin: 20px 0;
+}
+
+#learningContent .video-placeholder i {
+    font-size: 64px;
+    margin-bottom: 15px;
+}
+
+/* Module Description */
+#learningContent .module-description {
+    background: #f8f9fa;
+    padding: 25px;
+    border-radius: 15px;
+    margin: 20px 0;
+    border-left: 4px solid #667eea;
+}
+
+/* Quiz Section */
+#learningContent .module-quiz {
+    background: #fff8e7;
+    padding: 25px;
+    border-radius: 15px;
+    margin: 20px 0;
+}
+
+#learningContent .quiz-question {
+    margin-bottom: 25px;
+    padding: 15px;
+    background: white;
+    border-radius: 12px;
+    border: 1px solid #ffe0b3;
+}
+
+#learningContent .quiz-question p {
+    margin-bottom: 12px;
+    color: #333;
+}
+
+#learningContent .quiz-options label {
+    display: block;
+    margin: 10px 0;
+    cursor: pointer;
+    padding: 8px 12px;
+    border-radius: 8px;
+    transition: background 0.2s;
+}
+
+#learningContent .quiz-options label:hover {
+    background: #fff0d6;
+}
+
+#learningContent .quiz-options input {
+    margin-right: 10px;
+}
+
+/* Buttons */
+#learningContent .complete-btn,
+#learningContent .quiz-submit-btn {
+    background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+    color: white;
+    border: none;
+    padding: 12px 28px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: transform 0.2s;
+}
+
+#learningContent .complete-btn:hover,
+#learningContent .quiz-submit-btn:hover {
+    transform: translateY(-2px);
+}
+
+#learningContent .completed-badge {
+    background: #28a745;
+    color: white;
+    padding: 12px 28px;
+    border-radius: 10px;
+    display: inline-block;
+    font-weight: bold;
+}
+
+#learningContent .close-learning-btn {
+    background: #dc3545;
+    color: white;
+    border: none;
+    padding: 12px 28px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-left: 10px;
+    transition: transform 0.2s;
+}
+
+#learningContent .close-learning-btn:hover {
+    transform: translateY(-2px);
+}
+
+/* Scrollbar Styling */
+#learningModal>div>div:last-child>div:first-child::-webkit-scrollbar,
+#learningModal>div>div:last-child>div:last-child::-webkit-scrollbar {
+    width: 6px;
+}
+
+#learningModal>div>div:last-child>div:first-child::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+#learningModal>div>div:last-child>div:first-child::-webkit-scrollbar-thumb {
+    background: #667eea;
+    border-radius: 3px;
+}
+
+/* Continue Button Style */
+.continue-btn {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s;
+}
+
+.continue-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    #learningModal>div {
+        width: 95%;
+        margin: 20px auto;
+    }
+
+    #learningModal>div>div:last-child {
+        flex-direction: column;
+        height: auto;
+    }
+
+    #learningModal>div>div:last-child>div:first-child {
+        width: 100%;
+        max-height: 300px;
+    }
+
+    #learningContent .video-placeholder {
+        padding: 30px;
+    }
+
+    #learningContent .complete-btn,
+    #learningContent .close-learning-btn {
+        display: block;
+        width: 100%;
+        margin: 10px 0;
+    }
+
+    #learningContent .close-learning-btn {
+        margin-left: 0;
+    }
+}
+
+/* ============================================ */
+/* AI ASSISTANT PANEL STYLES - Last mein add karo */
+/* ============================================ */
+
+.ai-chat-container {
+    background: #1e1e2e;
+    border-radius: 15px;
+    overflow: hidden;
+    margin-top: 20px;
+    border: 1px solid #333;
+}
+
+.ai-chat-messages {
+    height: 400px;
+    overflow-y: auto;
+    padding: 20px;
+    background: #2a2a3a;
+}
+
+.ai-msg {
+    background: #3a3a4a;
+    color: white;
+    padding: 12px 16px;
+    border-radius: 15px;
+    margin-bottom: 15px;
+    max-width: 85%;
+    border-left: 4px solid #00ff88;
+    line-height: 1.5;
+}
+
+.user-msg {
+    background: #007bff;
+    color: white;
+    padding: 12px 16px;
+    border-radius: 15px;
+    margin-bottom: 15px;
+    margin-left: auto;
+    max-width: 85%;
+    text-align: right;
+}
+
+.ai-chat-input-area {
+    display: flex;
+    gap: 10px;
+    padding: 15px;
+    background: #1e1e2e;
+    border-top: 1px solid #333;
+}
+
+.ai-chat-input-area input {
+    flex: 1;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    background: #2a2a3a;
+    color: white;
+    font-size: 14px;
+}
+
+.ai-chat-input-area input::placeholder {
+    color: #888;
+}
+
+.ai-chat-input-area input:focus {
+    outline: none;
+    border: 1px solid #007bff;
+}
+
+.ai-chat-input-area button {
+    padding: 12px 20px;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.ai-chat-input-area button:hover {
+    background: #0056b3;
+}
+
+.ai-suggestions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 15px;
+    background: #1e1e2e;
+    border-top: 1px solid #333;
+}
+
+.ai-suggestions span {
+    background: #2a2a3a;
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: 0.3s;
+    color: #ddd;
+}
+
+.ai-suggestions span:hover {
+    background: #007bff;
+    color: white;
+}
+
+.typing-indicator {
+    background: #3a3a4a;
+    padding: 10px 16px;
+    border-radius: 15px;
+    max-width: 60px;
+    text-align: center;
+}
+
+.typing-indicator span {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #888;
+    margin: 0 2px;
+    animation: typing 1.4s infinite ease-in-out;
+}
+
+.typing-indicator span:nth-child(1) {
+    animation-delay: 0s;
+}
+
+.typing-indicator span:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.typing-indicator span:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+@keyframes typing {
+
+    0%,
+    60%,
+    100% {
+        transform: translateY(0);
+        opacity: 0.5;
+    }
+
+    30% {
+        transform: translateY(-10px);
+        opacity: 1;
+    }
+}

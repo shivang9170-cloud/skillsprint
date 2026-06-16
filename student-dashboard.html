@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkillSprint - Student Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="student-style.css">
+</head>
+
+<body>
+
+    <nav>
+        <h1>🚀 SkillSprint</h1>
+        <div class="nav-items">
+            <div onclick="showPanel('home')"><i class="fas fa-home"></i><span>Home</span></div>
+            <div onclick="showPanel('courses')"><i class="fas fa-book"></i><span>Courses</span></div>
+            <div onclick="showPanel('mycourses')"><i class="fas fa-graduation-cap"></i><span>My Courses</span></div>
+            <div onclick="showPanel('teachers')"><i class="fas fa-chalkboard-user"></i><span>Teachers</span></div>
+            <div onclick="showPanel('students')"><i class="fas fa-users"></i><span>Students</span></div>
+            <div onclick="showPanel('chat')"><i class="fas fa-comment"></i><span>Chat</span></div>
+            <div onclick="showPanel('leaderboard')"><i class="fas fa-trophy"></i><span>Leaderboard</span></div>
+            <div onclick="showPanel('notices')"><i class="fas fa-bullhorn"></i><span>Notices</span></div>
+            <div onclick="showPanel('profile')"><i class="fas fa-user"></i><span>Profile</span></div>
+            <!-- ✅ NEW: AI Assistant Button -->
+            <div onclick="showPanel('aiassistant')"><i class="fas fa-robot"></i><span>AI Assistant</span></div>
+        </div>
+    </nav>
+
+    <div class="main">
+        <div class="sidebar">
+            <div class="profile-mini" id="profileMini"></div>
+            <div class="stories" id="stories"></div>
+            <div class="menu">
+                <button onclick="showPanel('home')"><span>🏠 Feed</span></button>
+                <button onclick="showPanel('courses')"><span>📚 All Courses (150+)</span></button>
+                <button onclick="showPanel('mycourses')"><span>📖 My Courses</span></button>
+                <button onclick="showPanel('teachers')"><span>👨‍🏫 Teachers</span></button>
+                <button onclick="showPanel('students')"><span>👥 Students</span></button>
+                <button onclick="showPanel('chat')"><span>💬 Chat</span></button>
+                <button onclick="showPanel('leaderboard')"><span>🏆 Leaderboard</span></button>
+                <button onclick="showPanel('notices')"><span>📢 Notices</span></button>
+                <button onclick="showPanel('profile')"><span>👤 Profile</span></button>
+                <!-- ✅ NEW: AI Assistant Sidebar Button -->
+                <button onclick="showPanel('aiassistant')"><span>🤖 AI Assistant</span></button>
+            </div>
+        </div>
+
+        <div class="content">
+            <div id="homePanel" class="panel active">
+                <div class="create-post">
+                    <div class="avatar-circle" id="currentUserAvatarCircle">R</div>
+                    <input type="text" id="postInput" placeholder="What's on your mind?">
+                    <button onclick="addPost()"><i class="fas fa-paper-plane"></i> Post</button>
+                </div>
+                <div class="stats-grid" id="stats"></div>
+                <h3>📱 Recent Feed</h3>
+                <div id="feed"></div>
+            </div>
+
+            <div id="coursesPanel" class="panel">
+                <div class="search-bar">
+                    <input type="text" id="courseSearch" placeholder="Search courses..." onkeyup="searchCourses()">
+                    <select id="courseFilter" onchange="searchCourses()">
+                        <option>All</option>
+                        <option>Beginner</option>
+                        <option>Intermediate</option>
+                        <option>Advanced</option>
+                    </select>
+                </div>
+                <div id="allCoursesList"></div>
+            </div>
+
+            <div id="mycoursesPanel" class="panel">
+                <h2>📖 My Enrolled Courses</h2>
+                <div id="myCoursesList"></div>
+            </div>
+
+            <div id="teachersPanel" class="panel">
+                <h2>👨‍🏫 Our Teachers</h2>
+                <div id="teachersList" class="teachers-grid"></div>
+            </div>
+
+            <div id="studentsPanel" class="panel">
+                <h2>👥 All Students</h2>
+                <div id="studentsList" class="students-grid"></div>
+            </div>
+
+            <div id="chatPanel" class="panel">
+                <h2>💬 Chat</h2>
+                <div class="chat-container">
+                    <div class="chat-users" id="chatUsers"></div>
+                    <div class="chat-area">
+                        <div class="chat-header" id="chatHeader">Select a user</div>
+                        <div class="chat-messages" id="chatMessages"></div>
+                        <div class="chat-input">
+                            <input type="text" id="messageInput" placeholder="Type message...">
+                            <button onclick="sendMessage()"><i class="fas fa-paper-plane"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="leaderboardPanel" class="panel">
+                <h2>🏆 Leaderboard - Top 10</h2>
+                <div id="leaderboardList"></div>
+            </div>
+
+            <div id="noticesPanel" class="panel">
+                <h2>📢 Announcements</h2>
+                <div id="noticesList"></div>
+            </div>
+
+            <div id="profilePanel" class="panel">
+                <h2>👤 My Profile</h2>
+                <div id="profileInfo"></div>
+                <div class="edit-profile">
+                    <h3>Edit Profile</h3>
+                    <input type="text" id="editName" placeholder="Full Name">
+                    <textarea id="editBio" rows="2" placeholder="Bio"></textarea>
+                    <button onclick="updateProfile()">Save Changes</button>
+                </div>
+            </div>
+
+            <!-- ✅ NEW: AI Assistant Panel -->
+            <div id="aiassistantPanel" class="panel">
+                <h2>🤖 AI Assistant <span style="font-size: 14px; color: #00ff88;">(Powered by Groq - Fast &
+                        Free)</span></h2>
+                <div class="ai-chat-container">
+                    <div class="ai-chat-messages" id="aiChatMessages">
+                        <div class="ai-msg">🤖 Hello! I'm your AI learning assistant. Ask me anything about courses,
+                            programming, doubts, or career guidance!</div>
+                    </div>
+                    <div class="ai-chat-input-area">
+                        <input type="text" id="aiUserInput"
+                            placeholder="Ask me anything about courses, coding, career..."
+                            onkeypress="if(event.key==='Enter') sendAIMessage()">
+                        <button onclick="sendAIMessage()"><i class="fas fa-paper-plane"></i> Send</button>
+                        <button onclick="clearAIChat()" style="background: #555;"><i class="fas fa-trash"></i>
+                            Clear</button>
+                    </div>
+                    <div class="ai-suggestions">
+                        <span onclick="sendSuggestion('What are the best courses for beginners?')">📚 Best courses for
+                            beginners?</span>
+                        <span onclick="sendSuggestion('How to improve coding skills?')">💻 Improve coding skills?</span>
+                        <span onclick="sendSuggestion('Career roadmap for web development?')">🚀 Web dev roadmap?</span>
+                        <span onclick="sendSuggestion('Explain DSA in simple words')">📖 Explain DSA simply</span>
+                        <span onclick="sendSuggestion('How to get a job after course?')">💼 Get a job after
+                            course?</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="student-script.js"></script>
+</body>
+
+</html>
